@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+    <label for="ip">Ip</label>
+    <input type="text" formControlName="ip">
+    <label for="token">Token</label>
+    <input type="text" formControlName="token">
+    <button [disabled]="!form.valid" (click)="connect()">Connect</button>
+</form>
+
+
+<form *ngIf="socketService.isConnected()" [formGroup]="subscriptionForm">
+    <label for="path">path</label>
+    <input type="text" formControlName="path">
+    <button [disabled]="!subscriptionForm.valid" (click)="subscribe()">Subscribe</button>
+    <button [disabled]="!subscriptionForm.valid" (click)="unSubscribe()">unSubscribe</button>
+</form>
+<form *ngIf="socketService.isConnected()" [formGroup]="simpleMessageForm">
+    <label for="path">path</label>
+    <input type="text" formControlName="path">
+    <label for="message">message</label>
+    <input type="text" formControlName="message">
+    <button (click)="sendMessage()">Send Message</button>
+</form>
+<form *ngIf="socketService.isConnected()" [formGroup]="filterForm">
+    <label for="property">property</label>
+    <input type="text" formControlName="property">
+    <label for="value">value</label>
+    <input type="text" formControlName="value">
+</form>
+<div>
+    <p #Data></p>
+</div>
